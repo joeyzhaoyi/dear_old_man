@@ -15,6 +15,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -89,6 +90,18 @@ public class MainActivity extends Activity implements OnClickListener {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent event) {
+		int action = event.getAction();
+		if (action == KeyEvent.ACTION_DOWN || action == KeyEvent.ACTION_UP) {
+			if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+				Log.d(TAG, "BACK ignored");
+				return true;
+			}
+		}
+		return super.dispatchKeyEvent(event);
 	}
 
 	@Override
